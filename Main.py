@@ -22,6 +22,9 @@ Person("Necko", 900, 400)
 Person("Ron", 700, 400)
 Person("Becky", 900, 500)
 Person("Ben", 700, 500)
+Person("Margarit", 300, 400)
+Person("Stank", 300, 500)
+Person("El Kexet", 500, 700)
 
 TheTime = ""
 

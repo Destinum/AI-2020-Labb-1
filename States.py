@@ -110,11 +110,13 @@ class Working(State):
         if (ThePerson.CurrentLocation == "Office"):
             ThePerson.Money += 0.2 * ThePerson.MoneyMultiplier
         elif (ThePerson.CurrentLocation == "Forest" and ThePerson.Bullets > 0):
-            FoundMoose = random.randrange(1, 11, 1)
-            if (FoundMoose == 10):
-                ThePerson.Bullets -= 1
+            FoundMoose = random.randrange(1, 201, 1)
+            if (FoundMoose == 1):
+                ThePerson.Bullets -= random.randrange(1, 6, 1)
+                if (ThePerson.Bullets < 0):
+                    ThePerson.Bullets = 0
                 KilledMoose = random.randrange(1, 5, 1)
-                if (KilledMoose == 4):
+                if (KilledMoose == 1):
                     print(ThePerson.Name + " found a moose and managed to kill it!")
                     print(ThePerson.Name + " received 200 money for the moose.")
                     ThePerson.Money += 200

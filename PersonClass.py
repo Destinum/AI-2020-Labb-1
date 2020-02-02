@@ -54,6 +54,25 @@ class Person:
 	#Color = [255, 0, 0]
 	Color = 0
 
+	def Die():
+		for person in TheMessenger.SocialPeople:
+			if(person == self.Name):
+				TheMessenger.SocialPeople.remove(person)
+				for i in TheMessenger.SocialPeople:
+					TheMessenger.ToMessenger(self.Name, i, "Not Going Out", "Now", "NULL")
+				break
+		for person in TheMessenger.CurrentlySocializing:
+			if(person == self.Name):
+				TheMessenger.CurrentlySocializing.remove(person)
+				for i in TheMessenger.CurrentlySocializing:
+					TheMessenger.ToMessenger(self.Name, i, "Not Going Out", "Now", "NULL")
+				break
+		for index, person in enumerate(TheMessenger.ListOfPeople):
+			if(person.Name == self.Name):
+				TheMessenger.ListOfPeople.pop(index)
+				break
+
+
 	def CalculateTimeToLeave(self, Hour, Minute, DestinationCoordinateX, DestinationCoordinateY):
 		Distance = abs(DestinationCoordinateX - self.xCoordinate)
 		if (Distance < abs(DestinationCoordinateY - self.yCoordinate)):
@@ -144,34 +163,20 @@ class Person:
 
 		
 		if (self.Hunger <= 0.0):
-			for index, person in enumerate(TheMessenger.ListOfPeople):
-				if(person.Name == self.Name):
-						TheMessenger.ListOfPeople.pop(index)
-						print(person.Name, "died from exhaustion.")
-						break
 			print(self.Name, "died from hunger.")
+			self.Die()
 
 		elif (self.Thirst <= 0.0):
-			for index, person in enumerate(TheMessenger.ListOfPeople):
-				if(person.Name == self.Name):
-						TheMessenger.ListOfPeople.pop(index)
-						print(person.Name, "died from exhaustion.")
-						break
 			print(self.Name, "died from thirst.")
+			self.Die()
 
 		elif (self.Sleep <= 0.0):
-			for index, person in enumerate(TheMessenger.ListOfPeople):
-				if(person.Name == self.Name):
-					TheMessenger.ListOfPeople.pop(index)
-					print(person.Name, "died from exhaustion.")
-					break
+			print(person.Name, "died from exhaustion.")
+			self.Die()
 
 		elif (self.Social <= 0.0):
-			for index, person in enumerate(TheMessenger.ListOfPeople):
-				if(person.Name == self.Name):
-					TheMessenger.ListOfPeople.pop(index)
-					print(self.Name, "committed suicide out of lonelyness.")
-					break
+			print(self.Name, "committed suicide out of lonelyness.")
+			self.Die()
 
 
 	def ReceiveMessage(self, sender, receiver, message, extraInfo):

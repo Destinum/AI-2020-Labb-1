@@ -21,7 +21,7 @@ class Messenger(object):
 		return class_._instance
 
 	Display_Width = 1000
-	Display_Height = 600
+	Display_Height = 800
 
 	ListOfPeople = []
 	ListOfLocations = [
