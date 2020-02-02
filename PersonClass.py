@@ -54,7 +54,7 @@ class Person:
 	#Color = [255, 0, 0]
 	Color = 0
 
-	def Die():
+	def Die(self):
 		for person in TheMessenger.SocialPeople:
 			if(person == self.Name):
 				TheMessenger.SocialPeople.remove(person)
@@ -141,7 +141,7 @@ class Person:
 				self.PreviousState = self.CurrentState
 				self.CurrentState = Drinking()
 
-		if (self.Sleep < 20.0 and self.CurrentState.StateName == "Sleeping"):
+		if (self.Sleep < 20.0 and self.CurrentState.StateName != "Sleeping"):
 			if (self.CurrentLocation == (self.Name + "'s House")):
 				self.CurrentState = Sleeping()
 			else:
