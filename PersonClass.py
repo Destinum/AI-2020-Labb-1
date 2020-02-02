@@ -171,7 +171,7 @@ class Person:
 			self.Die()
 
 		elif (self.Sleep <= 0.0):
-			print(person.Name, "died from exhaustion.")
+			print(self.Name, "died from exhaustion.")
 			self.Die()
 
 		elif (self.Social <= 0.0):
