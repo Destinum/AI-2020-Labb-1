@@ -12,9 +12,6 @@ class Message:
 	timestamp = ""
 	extraInfo = ""
 
-	def Thing(self):
-		print(self.sender)
-
 
 class Messenger(object):
 	_instance = None
@@ -31,13 +28,22 @@ class Messenger(object):
 		["Office", (Display_Width / 2), 50, 50, 50, (0, 0, 0)],
 		["Store", (Display_Width / 2), 250, 50, 50, (0, 0, 0)],
 		["Pub", (Display_Width / 2), 450, 50, 50, (0, 0, 0)],
-		["Part Time Work", (Display_Width - 100), 150, 50, 50, (0, 0, 0)]
+		["Forest", (Display_Width - 100), 150, 50, 50, (0, 0, 0)]
 					]
+	DelayedMessages = []
+	SocialPeople = []
+	CurrentlySocializing = []
 
 
 	def ToMessenger(self, sender, receiver, message, timestamp, extraInfo):
-		if (timestamp == "Now"):
+		if(message == "Want To Socialize"):
+			self.SocialPeople.append(sender)
+		
+		elif (timestamp == "Now"):
 			self.ToPerson(sender, receiver, message, extraInfo)
+
+		else:
+			self.DelayedMessages.append(Message(sender, receiver, message, timestamp, extraInfo))
 
 
 

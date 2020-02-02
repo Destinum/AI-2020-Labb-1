@@ -19,14 +19,9 @@ LastTime = time.process_time()
 CurrentTime = time.process_time()
 
 Person("Necko", 900, 400)
-#Person("Ron", 700, 400)
-#Person("Becky", 900, 500)
-#Person("Ben", 700, 500)
-#Bob = Person("Bob")
-#TheMessenger.ListOfPeople.append(Bob)
-
-#Steve = Person("Steve")
-#TheMessenger.ListOfPeople.append(Steve)
+Person("Ron", 700, 400)
+Person("Becky", 900, 500)
+Person("Ben", 700, 500)
 
 TheTime = ""
 
@@ -34,7 +29,6 @@ smallTextSize = 10
 
 largeText = pygame.font.Font('freesansbold.ttf', 20)
 smallText = pygame.font.Font('freesansbold.ttf', smallTextSize)
-#smallerText = pygame.font.Font('freesansbold.ttf', 8)
 
 #Tingy = [["Fisk", "Stuff"], ["Fisk2", "Stuff2"]]
 #print(Tingy[1][1])
@@ -50,19 +44,19 @@ while Running:
         if event.type == pygame.QUIT:
             Running = False
             break
-
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_SPACE]:
-        Paused = not Pausedt
-    if keys[pygame.K_KP_ENTER]:
-        try:
-            val = float(input("Enter new update rate per second: "))
-            UpdateRate = 1.0 / val
-        except ValueError:
-            print("Couldn't convert input to usable value.")
-    if keys[pygame.K_ESCAPE]:
-        break
-
+        
+        elif event.type == pygame.KEYDOWN:
+            if (event.key == pygame.K_SPACE):
+                Paused = not Paused
+            if (event.key == pygame.K_KP_ENTER):
+                try:
+                    val = float(input("Enter new update rate per second: "))
+                    UpdateRate = 1.0 / val
+                except ValueError:
+                    print("Couldn't convert input to usable value.")
+            if (event.key == pygame.K_ESCAPE):
+                Running = False
+                break
 
 
     if (Paused == False and (CurrentTime - LastTime) >= UpdateRate):
@@ -95,15 +89,17 @@ while Running:
             pygame.draw.rect(Window, (i.Color[0], i.Color[1], i.Color[2]), ((i.xCoordinate - i.Width / 2), (i.yCoordinate - i.Height / 2), i.Width, i.Height))
 
             CharacterStats = [(str(i.Name) + "'s Current State: " + str(i.CurrentState.StateName)),
-                              (str(i.Name) + "'s Current Location: " + str(i.CurrentLocation)),
-                              (str(i.Name) + "'s Hunger: " + str(i.Hunger)),
-                              (str(i.Name) + "'s Thirst: " + str(i.Thirst)),
-                              (str(i.Name) + "'s Sleep: " + str(i.Sleep)),
-                              (str(i.Name) + "'s Social: " + str(i.Social)),
-                              (str(i.Name) + "'s Money: " + str(i.Money)),
-                              (str(i.Name) + "'s Meals Remaining: " + str(i.Meals)),
-                              (" ")]
+                                (str(i.Name) + "'s Current Location: " + str(i.CurrentLocation)),
+                                (str(i.Name) + "'s Hunger: " + str(i.Hunger)),
+                                (str(i.Name) + "'s Thirst: " + str(i.Thirst)),
+                                (str(i.Name) + "'s Sleep: " + str(i.Sleep)),
+                                (str(i.Name) + "'s Social: " + str(i.Social)),
+                                (str(i.Name) + "'s Money: " + str(i.Money)),
+                                (str(i.Name) + "'s Meals Remaining: " + str(i.Meals)),
+                                (str(i.Name) + "'s Bullets Remaining: " + str(i.Bullets)),
+                                (" ")]
 
+            pygame.draw.rect(Window, (i.Color[0], i.Color[1], i.Color[2]), (10, (LineSpace - smallTextSize), i.Width, i.Height))
             for Text in CharacterStats:
                 TextSurf, TextRect = text_object(Text, smallText)
                 TextRect.topleft = (10, LineSpace)
