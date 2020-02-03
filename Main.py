@@ -113,3 +113,4 @@ while Running:
     pygame.display.update()
 
 pygame.quit()
+print("Session ended at " + TheTime)
