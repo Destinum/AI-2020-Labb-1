@@ -244,7 +244,7 @@ class Person:
 
 			elif (extraInfo[0] == (self.Name + "'s House")):
 				if (extraInfo[1] == "Sleep"):
-					self.CurrentState = Sleep()
+					self.CurrentState = Sleeping()
 				else:
 					self.CurrentState = Idle()
 
